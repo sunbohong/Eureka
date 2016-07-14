@@ -95,9 +95,13 @@ class HomeViewController : FormViewController {
         +++ Section()
                 <<< ButtonRow() { (row: ButtonRow) -> Void in
                    row.title = "About"
-                }  .onCellSelection({ (cell, row) in
-                    self.showAlert()
-                })
+                }
+			.onCellSelection({ (cell, row) in
+				let sectionTitle = "New Section ".stringByAppendingString("\(row.indexPath()?.section))")
+				let section = Section(sectionTitle)
+				print(sectionTitle)
+				self.form.insert(section, atIndex: (row.indexPath()?.section)!)
+		})
     }
     
     
